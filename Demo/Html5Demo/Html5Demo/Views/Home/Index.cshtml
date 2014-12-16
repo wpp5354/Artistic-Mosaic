@@ -30,8 +30,8 @@
     <style type="text/css">
         .warp {
             position: relative;
-            width: 1280px;
-            height: 1024px;
+            width: 12800px;
+            height: 10240px;
         }
 
         .inbox, .outbox {
@@ -48,8 +48,8 @@
         }
 
             .inbox img {
-                width: 20px;
-                height: 20px;
+                width: 100px;
+                height: 100px;
             }
 
         .outbox {
@@ -57,6 +57,7 @@
             opacity: .75;
         }
     </style>
+    <script src="/Script/html2canvas/html2canvas.js"></script>
     <script type="text/javascript">
         $(function () {
             var html = new Array();
@@ -68,6 +69,13 @@
             $("#inbox").html(html.join(""));
         });
 
+        function Get() {
+            html2canvas(document.querySelector(".warp")).then(function (canvas) {
+                var d = canvas.toDataURL("image/jpeg");
+                $("#tempImg").attr("src",d);
+            },false);
+        };
+
     </script>
 </head>
 <body>
@@ -77,8 +85,10 @@
 
         </div>
         <div class="outbox">
-            <img src="/Content/Image/1.jpg" />
+            <img src="/Content/Image/1.jpg"  style=""/>
         </div>
     </div>
+    <div><a href="javascript:;" id="downloadBtn" onclick="Get.call(this)">生成图片</a></div>
+    <img id="tempImg" src="" alt="" />
 </body>
 </html>
